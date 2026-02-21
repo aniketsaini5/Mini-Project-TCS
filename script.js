@@ -8,20 +8,21 @@ form.addEventListener("submit", (e) => {
     const email = document.querySelector("#email").value.trim();
     const message = document.querySelector("#message").value.trim();
 
-    const hasNumber = /\d/.test(name);
+    const validName = /^([A-Z][a-z]+)(\s[A-Z][a-z]+)*$/.test(name);
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    const error = hasNumber ? "Name should not contain numbers!"
+    const error = !validName ? "Name must be in format: Capitalized words (e.g., 'Aniket Sadhiyan')."
         : !validEmail ? "Please enter a valid email!"
             : null;
 
     feedback.textContent = error ? error : "Thank you! Message sent.";
     feedback.style.color = error ? "red" : "black";
-    SetTimeout(() => feedback.textContent = "", 3000);
+    setTimeout(() => (feedback.textContent = ""), 3000);
 
     if (!error) {
-        const formData = { name:name, email:email, message: message, submittedAt: new Date().toISOString() };
+        const formData = { name: name, email: email, message: message, submittedAt: new Date().toISOString() };
         console.log(formData);
         form.reset();
+
     }
 });
