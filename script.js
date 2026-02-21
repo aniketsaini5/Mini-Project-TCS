@@ -17,12 +17,11 @@ form.addEventListener("submit", (e) => {
 
     feedback.textContent = error ? error : "Thank you! Message sent.";
     feedback.style.color = error ? "red" : "black";
-    setTimeout(() => (feedback.textContent = ""), 3000);
 
     if (!error) {
         const formData = { name: name, email: email, message: message, submittedAt: new Date().toISOString() };
         console.log(formData);
         form.reset();
-
+        setTimeout(() => (feedback.textContent = ""), 3000);
     }
 });
